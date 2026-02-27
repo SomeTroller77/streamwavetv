@@ -26,6 +26,7 @@ export default function Stream({url}){
                 ref={videoRef}
                 controls
                 autoPlay
+                muted
                 className="w-full max-w-4xl rounded-lg"
             />
         </div>
