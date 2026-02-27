@@ -7,17 +7,16 @@ export default function Stream({url}){
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
-
         if (Hls.isSupported()) {
-            const hls = new Hls({liveSyncDurationCount: 3});
-            hls.loadSource(url);
-            hls.attachMedia(video);
+                const hls = new Hls({liveSyncDurationCount: 3});
+                hls.loadSource(url);
+                hls.attachMedia(video);
             } 
             else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-            video.src = url;
+                video.src = url;
             } 
             else {
-            console.log("HLS not supported");
+                console.log("HLS not supported");
             }
     }, [url]);
     return(
@@ -26,6 +25,7 @@ export default function Stream({url}){
             <video
                 ref={videoRef}
                 controls
+                autoPlay
                 className="w-full max-w-4xl rounded-lg"
             />
         </div>
