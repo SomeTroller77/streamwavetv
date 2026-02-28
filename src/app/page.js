@@ -12,7 +12,7 @@ const inter = Inter({
   subsets:['latin'],
   weight: '200',
 });
-
+export const dynamic = "force-dynamic";
 
 export default async function Home({searchParams}) {
   const country = (await searchParams).region;
