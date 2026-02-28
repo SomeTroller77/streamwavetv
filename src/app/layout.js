@@ -37,7 +37,7 @@ export default async function RootLayout({ children }) {
           <Navbar countries={countries} current={ip.countryCode}/>
         </Suspense>
         {children}
-        <footer className="mt-auto bg-black border-t border-gray-800 py-6 text-center">
+        <footer className="fixed bottom-0 left-0 w-full bg-black border-t border-gray-800 py-4 text-center z-50">
           <p className="text-gray-500 text-sm tracking-wide">
             Made with ❤️ by{" "}
             <a
