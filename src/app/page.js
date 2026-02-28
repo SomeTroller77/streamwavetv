@@ -14,20 +14,17 @@ const inter = Inter({
 });
 
 
-export default async function Home({ req }) {
+export default async function Home({searchParams}) {
+  const country = (await searchParams).region;
   const res = await axios.get('https://iptv-org.github.io/api/categories.json');
   const resp = await res.data;
   const logos = await (await axios.get("https://iptv-org.github.io/api/logos.json")).data;
-  const headersList = headers();
-  const forwardedFor = (await headersList).get('x-forwarded-for');
-  const clientIp = forwardedFor ? forwardedFor.split(',')[0].trim() : 'Unknown';
   const rawChannels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;
-  console.log(rawChannels);
   return (
     <div>
       <div className="flex flex-col gap-10 px-8 py-6">
         {resp.map((i) => {
-          return <Section name={i.name} key={i.id} channels={rawChannels.filter((j) => j.country == 'IN' && j.categories?.includes(i.id))} logos={logos}/>
+          return <Section name={i.name} key={i.id} channels={rawChannels.filter((j) => j.country == country && j.categories?.includes(i.id))} logos={logos}/>
         })}
       </div>
     </div>

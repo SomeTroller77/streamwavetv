@@ -3,7 +3,7 @@ import 'animate.css';
 import { Bebas_Neue } from 'next/font/google'
 import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
-
+import axios from "axios";
 const bebas = Bebas_Neue({
   subsets: ['latin'],
   weight: '400',
@@ -13,7 +13,9 @@ export const metadata = {
   description: "Made by Saksham Vitwekar",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const countries = await (await axios.get("https://iptv-org.github.io/api/countries.json")).data;
+  const ip = await(await axios.get("http://ip-api.com/json/")).data;
   return (
     <html lang="en">
       <head>
@@ -21,7 +23,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="container dark:bg-black text-blue-700">
         <Loader/>
-        <Navbar/>
+        <Navbar countries={countries} current={ip.countryCode}/>
         {children}
       </body>
     </html>
