@@ -27,11 +27,11 @@ export default async function RootLayout({ children }) {
     : realIp || "Unknown";
   const ip = await (await axios.get(`http://ip-api.com/json/${ipraw}`)).data
   return (
-    <html lang="en" className="container dark:bg-black text-blue-700">
+    <html lang="en" className="bg-black">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className="container dark:bg-black text-blue-700">
+      <body className="bg-black text-blue-700 min-h-screen flex flex-col">
         <Loader/>
         <Suspense fallback={null}>
           <Navbar countries={countries} current={ip.countryCode}/>
@@ -41,7 +41,7 @@ export default async function RootLayout({ children }) {
           <p className="text-gray-500 text-sm tracking-wide">
             Made with ❤️ by{" "}
             <a
-              href="https://github.com/YOUR_GITHUB_USERNAME"
+              href="https://github.com/SomeTroller77"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-700 font-semibold hover:underline"
