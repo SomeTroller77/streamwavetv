@@ -26,7 +26,7 @@ export default async function RootLayout({ children }) {
     : realIp || "Unknown";
   const ip = await (await axios.get(`http://ip-api.com/json/${ipraw}`)).data
   return (
-    <html lang="en">
+    <html lang="en" className="container dark:bg-black text-blue-700">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
