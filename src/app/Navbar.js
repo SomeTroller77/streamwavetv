@@ -9,7 +9,7 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
 })
-
+export const dynamic = "force-dynamic";
 export default function Navbar({ countries, current }) {
 const router = useRouter()
 const searchParams = useSearchParams()
