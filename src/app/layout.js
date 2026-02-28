@@ -13,6 +13,7 @@ const bebas = Bebas_Neue({
 export const metadata = {
   title: "StreamWaveTV",
   description: "Made by Saksham Vitwekar",
+  themeColor: "#000000",
 };
 
 export default async function RootLayout({ children }) {
@@ -36,6 +37,19 @@ export default async function RootLayout({ children }) {
           <Navbar countries={countries} current={ip.countryCode}/>
         </Suspense>
         {children}
+        <footer className="mt-auto bg-black border-t border-gray-800 py-6 text-center">
+          <p className="text-gray-500 text-sm tracking-wide">
+            Made with ❤️ by{" "}
+            <a
+              href="https://github.com/YOUR_GITHUB_USERNAME"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-700 font-semibold hover:underline"
+            >
+              Saksham Vitwekar
+            </a>
+          </p>
+        </footer>
       </body>
     </html>
   );
