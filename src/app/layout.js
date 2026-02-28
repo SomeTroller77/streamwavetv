@@ -1,6 +1,5 @@
 import "./globals.css";
 import 'animate.css';
-import { Suspense, useEffect, useState } from "react";
 import { Bebas_Neue } from 'next/font/google'
 import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
