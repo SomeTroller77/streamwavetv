@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Bebas_Neue } from 'next/font/google'
 import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
+import { headers } from "next/headers"; 
 import axios from "axios";
 const bebas = Bebas_Neue({
   subsets: ['latin'],
@@ -16,7 +17,14 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const countries = await (await axios.get("https://iptv-org.github.io/api/countries.json")).data;
-  const ip = await(await axios.get("http://ip-api.com/json/")).data;
+  const headersList = headers();
+
+  const forwardedFor = headersList.get("x-forwarded-for");
+  const realIp = headersList.get("x-real-ip");
+
+  const ip = forwardedFor
+    ? forwardedFor.split(",")[0]
+    : realIp || "Unknown";
   return (
     <html lang="en">
       <head>
