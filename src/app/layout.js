@@ -18,20 +18,13 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const countries = await (await axios.get("https://iptv-org.github.io/api/countries.json")).data;
   const headersList = headers();
-  const [ip, setip] = useState();
   const forwardedFor = headersList.get("x-forwarded-for");
   const realIp = headersList.get("x-real-ip");
 
   const ipraw = forwardedFor
     ? forwardedFor.split(",")[0]
     : realIp || "Unknown";
-    useEffect(() => {
-      async function getCountryCode(){
-        const res = await axios.get(`http://ip-api.com/json/${ipraw}`);
-        const resp = await res.data;
-        setip(res.countryCode)
-      }
-    }, [])
+  const ip = await (await axios.get(`http://ip-api.com/json/${ipraw}`)).data
   return (
     <html lang="en">
       <head>
