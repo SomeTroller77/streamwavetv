@@ -4,6 +4,7 @@ import { Bebas_Neue } from 'next/font/google'
 import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
 import { headers } from "next/headers"; 
+import { Suspense } from "react";
 import axios from "axios";
 const bebas = Bebas_Neue({
   subsets: ['latin'],
