@@ -9,9 +9,6 @@ export default async function play({ params }){
     const channelStreams = streams.filter(
         e => e.channel?.toLowerCase() === id.toLowerCase()
     );
-    console.log(
-        channelStreams
-    );
     return(
         <>
             {typeof stream !== 'undefined' ? <Stream url={stream.url}/> : <h1> Not allowed under copyright laws</h1>}
