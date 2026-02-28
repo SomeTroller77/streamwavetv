@@ -1,5 +1,6 @@
 import "./globals.css";
 import 'animate.css';
+import { Suspense } from "react";
 import { Bebas_Neue } from 'next/font/google'
 import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
@@ -23,7 +24,9 @@ export default async function RootLayout({ children }) {
       </head>
       <body className="container dark:bg-black text-blue-700">
         <Loader/>
-        <Navbar countries={countries} current={ip.countryCode}/>
+        <Suspense fallback={null}>
+          <Navbar countries={countries} current={ip.countryCode}/>
+        </Suspense>
         {children}
       </body>
     </html>
