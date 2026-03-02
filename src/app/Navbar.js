@@ -25,12 +25,14 @@ export default function Navbar({ countries, current }) {
 
   const dropdownRef = useRef(null);
 
+  /* Redirect default region */
   useEffect(() => {
     if (!searchParams.get("region")) {
       router.replace(`/?region=${current}`);
     }
   }, []);
 
+  /* Change region */
   function changeRegion(code) {
     const params = new URLSearchParams(searchParams.toString());
     params.set("region", code);
@@ -39,6 +41,7 @@ export default function Navbar({ countries, current }) {
     setDrawerOpen(false);
   }
 
+  /* Handle search */
   function handleSearch(e) {
     e.preventDefault();
     const params = new URLSearchParams(searchParams.toString());
@@ -55,6 +58,7 @@ export default function Navbar({ countries, current }) {
     setSearch("");
   }
 
+  /* Close desktop dropdown on outside click */
   useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -67,13 +71,13 @@ export default function Navbar({ countries, current }) {
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* ================= NAVBAR ================= */}
       <nav className="flex items-center justify-between px-4 md:px-6 py-4 bg-black border-b border-gray-800 relative z-50">
 
-        {/* Left Section */}
+        {/* LEFT SIDE */}
         <div className="flex items-center gap-4">
 
-          {/* Hamburger (Mobile Only) */}
+          {/* Hamburger (Mobile) */}
           <button
             onClick={() => setDrawerOpen(true)}
             className="md:hidden text-white text-2xl"
@@ -81,10 +85,10 @@ export default function Navbar({ countries, current }) {
             ☰
           </button>
 
-          {/* Logo */}
+          {/* Logo (smaller on mobile) */}
           <Link href="/">
             <h1
-              className={`text-blue-600 ${bebas.className} text-xl md:text-3xl transition`}
+              className={`text-blue-600 ${bebas.className} text-xl md:text-3xl`}
             >
               StreamWave TV
             </h1>
@@ -118,10 +122,10 @@ export default function Navbar({ countries, current }) {
           </div>
         </form>
 
-        {/* Right Section */}
+        {/* RIGHT SIDE */}
         <div className="flex items-center gap-4">
 
-          {/* Mobile Search Button */}
+          {/* Mobile Search Icon */}
           <button
             onClick={() => setSearchOpen(true)}
             className="md:hidden text-xl text-white"
@@ -129,7 +133,7 @@ export default function Navbar({ countries, current }) {
             🔍
           </button>
 
-          {/* Region Dropdown (Desktop) */}
+          {/* Desktop Region Dropdown */}
           <div className="hidden md:block relative" ref={dropdownRef}>
             <button
               onClick={() => setOpen(!open)}
@@ -162,12 +166,13 @@ export default function Navbar({ countries, current }) {
         </div>
       </nav>
 
-      {/* MOBILE DRAWER */}
+      {/* ================= MOBILE DRAWER ================= */}
       <div
         className={`fixed inset-0 z-40 transition ${
           drawerOpen ? "visible" : "invisible"
         }`}
       >
+        {/* Overlay */}
         <div
           className={`absolute inset-0 bg-black/60 transition-opacity ${
             drawerOpen ? "opacity-100" : "opacity-0"
@@ -175,39 +180,42 @@ export default function Navbar({ countries, current }) {
           onClick={() => setDrawerOpen(false)}
         ></div>
 
+        {/* Drawer */}
         <div
-          className={`absolute left-0 top-0 h-full w-72 bg-gray-900 p-6 transform transition-transform ${
+          className={`absolute left-0 top-0 h-full w-72 bg-gray-900 transform transition-transform flex flex-col ${
             drawerOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <button
-            onClick={() => setDrawerOpen(false)}
-            className="text-white text-xl mb-6"
-          >
-            ✕
-          </button>
-
-          <h2 className="text-blue-600 text-lg mb-4">Select Region</h2>
-
-          {countries.map((c) => (
+          {/* Fixed Header */}
+          <div className="p-6 border-b border-gray-800 flex justify-between items-center">
+            <h2 className="text-blue-600 text-lg">Select Region</h2>
             <button
-              key={c.code}
-              onClick={() => changeRegion(c.code)}
-              className="block w-full text-left py-2 text-gray-200 hover:text-white"
+              onClick={() => setDrawerOpen(false)}
+              className="text-white text-xl"
             >
-              {c.name}
+              ✕
             </button>
-          ))}
+          </div>
+
+          {/* Scrollable List */}
+          <div className="flex-1 overflow-y-auto p-6 space-y-2">
+            {countries.map((c) => (
+              <button
+                key={c.code}
+                onClick={() => changeRegion(c.code)}
+                className="block w-full text-left py-2 text-gray-200 hover:text-white"
+              >
+                {c.name}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* SEARCH MODAL (Mobile) */}
+      {/* ================= MOBILE SEARCH MODAL ================= */}
       {searchOpen && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-start p-6">
-          <form
-            onSubmit={handleSearch}
-            className="w-full"
-          >
+          <form onSubmit={handleSearch} className="w-full">
             <div className="relative">
               <input
                 autoFocus
