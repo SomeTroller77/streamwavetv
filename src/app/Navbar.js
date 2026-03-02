@@ -86,7 +86,7 @@ export default function Navbar({ countries, current }) {
           </button>
 
           {/* Logo (smaller on mobile) */}
-          <Link href="/">
+          <Link href={`/?region=${current}`}>
             <h1
               className={`text-blue-600 ${bebas.className} text-xl md:text-3xl`}
             >
