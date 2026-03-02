@@ -27,6 +27,7 @@ export default function Section({ name, channels, logos }) {
             imageUrl={
               logos.find((j) => i.id === j.channel)?.url
             }
+            name={i.name}
           />
         ))}
       </div>

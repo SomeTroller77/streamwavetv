@@ -13,13 +13,13 @@ export default async function ChannelPage({ params }) {
         <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">
         {/* Logo */}
                 <div className="w-[250px] h-[150px] flex items-center justify-center bg-gray-900 rounded-xl mb-6">
-                    {logo?.url && (
+                    {logo.url !== null ? (
                     <img
                         src={logo.url}
                         alt={chobj.name}
                         className="max-h-full max-w-full object-contain"
                     />
-                    )}
+                    ) : <h1>{chobj.name}</h1>}
                 </div>
                 {/* Channel Name */}
                 <h1 className="text-4xl font-bold text-blue-700 mb-4">

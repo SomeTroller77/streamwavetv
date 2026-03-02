@@ -22,9 +22,12 @@ export default async function RootLayout({ children }) {
   const forwardedFor = headersList.get("x-forwarded-for");
   const realIp = headersList.get("x-real-ip");
 
-  const ipraw = forwardedFor
+  var ipraw = forwardedFor
     ? forwardedFor.split(",")[0]
     : realIp || "Unknown";
+  if(ipraw === "::1"){
+    ipraw="1.178.1.255";
+  }
   const ip = await (await axios.get(`http://ip-api.com/json/${ipraw}`)).data
   return (
     <html lang="en" className="bg-black">

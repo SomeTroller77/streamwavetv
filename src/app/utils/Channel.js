@@ -3,18 +3,19 @@ import "tailwindcss";
 import { useRouter } from "next/navigation";
 
 
-export default function Channel({imageUrl, id}){
+export default function Channel({imageUrl, id , name}){
     const router = useRouter();
+    console.log(imageUrl)
     return(
         <div>
             <div className="min-w-[180px] h-[200px] flex items-center justify-center bg-gray-900 rounded-lg flex-shrink-0">
-                <img
+                {typeof imageUrl !== "undefined" ? <img
                     src={imageUrl}
-                    alt="Channel Logo"
+                    alt={name}
                     className="max-h-full max-w-full object-contain"
                 onClick={() => {
                     router.push(`/channel/${id}`);
-                }}/>
+                }}/> : <h1>{name}</h1>}
             </div>
         </div>
     );
