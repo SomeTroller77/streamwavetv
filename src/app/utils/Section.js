@@ -4,6 +4,11 @@ import { useRef, useState, useEffect } from "react";
 import Channel from "./Channel";
 
 export default function Section({ name, channels, logos }) {
+  if(channels.length === 0){
+    return(
+      <></>
+    );
+  }
   const containerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);

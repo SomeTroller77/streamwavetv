@@ -26,9 +26,9 @@ export default async function Home({searchParams}) {
   return (
     <div>
       <div className="flex flex-col gap-10 px-8 py-6">
-        {rawChannels.length !== 0 ? resp.map((i) => {
+        {resp.map((i) => {
           return <Section name={i.name} key={i.id} channels={rawChannels.filter((j) => j.country == country && j.categories?.includes(i.id) && streams.indexOf(j.id) !== -1)} logos={logos}/>
-        }) : <></>}
+        })}
       </div>
     </div>
   );
