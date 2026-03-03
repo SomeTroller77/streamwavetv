@@ -7,7 +7,6 @@ export default async function ChannelPage({ params }) {
     const chobj = channels.find((e) => e.id == id);
     const logos = await (await axios.get('https://iptv-org.github.io/api/logos.json')).data;
     const logo = logos.find((e) => e.channel === id);
-    console.log(channels);
     return (
         <>
         <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6">

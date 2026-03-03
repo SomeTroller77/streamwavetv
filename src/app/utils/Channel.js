@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 
 export default function Channel({imageUrl, id , name}){
     const router = useRouter();
-    console.log(imageUrl)
     return(
         <div>
             <div className="min-w-[180px] h-[200px] flex items-center justify-center bg-gray-900 rounded-lg flex-shrink-0">
