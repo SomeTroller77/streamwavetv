@@ -5,6 +5,8 @@ import Loader from "./utils/Loader";
 import Navbar from "./Navbar";
 import { headers } from "next/headers"; 
 import { Suspense } from "react";
+import { Analytics } from "@vercel/analytics/next"
+
 import axios from "axios";
 const bebas = Bebas_Neue({
   subsets: ['latin'],
@@ -40,6 +42,7 @@ export default async function RootLayout({ children }) {
           <Navbar countries={countries} current={ip.countryCode}/>
         </Suspense>
         {children}
+        <Analytics />
         <footer className="fixed bottom-0 left-0 w-full bg-black border-t border-gray-800 py-4 text-center z-50">
           <p className="text-gray-500 text-sm tracking-wide">
             Made with ❤️ by{" "}

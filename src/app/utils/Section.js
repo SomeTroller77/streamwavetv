@@ -70,7 +70,7 @@ export default function Section({ name, channels, logos }) {
           onScroll={updateScrollButtons}
           className="flex gap-6 overflow-x-hidden scroll-smooth"
         >
-          {channels.length !== 0 ? channels.map((i) => (
+          {channels.map((i) => (
             <Channel
               key={i.id}
               id={i.id}
@@ -79,7 +79,7 @@ export default function Section({ name, channels, logos }) {
               }
               name={i.name}
             />
-          )) : <></>}
+          ))}
         </div>
 
         {/* RIGHT BUTTON */}
