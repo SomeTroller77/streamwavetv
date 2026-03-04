@@ -1,6 +1,15 @@
 import axios from "axios";
 import Link from "next/link";
 
+export async function generateMetadata({params}){
+    const channels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;
+    const {id} = await params;
+    const chobj = channels.find((e) => e.id == id);
+    return{
+        title:`Watch ${chobj.name} for free LIVE`,
+        description:`Watch ${chobj.name} for free LIVE without any ads!`
+    }
+}
 export default async function ChannelPage({ params }) {
     const {id} = await params;
     const channels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;

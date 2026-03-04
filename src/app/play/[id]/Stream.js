@@ -3,6 +3,17 @@
 import Hls from "hls.js";
 import { useEffect, useRef, useState } from "react";
 
+
+export async function generateMetadata({params}){
+    const channels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;
+    const {id} = await params;
+    const chobj = channels.find((e) => e.id == id);
+    return{
+        title:`Streaming ${chobj.name} for free LIVE`,
+        description:`Streaming ${chobj.name} for free LIVE without any ads!`
+    }
+}
+
 export default function Stream({ url }) {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
@@ -148,7 +159,7 @@ export default function Stream({ url }) {
         )}
 
         {/* CONTROLS */}
-        <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-lg px-4 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-lg px-4 py-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
 
           {/* PROGRESS BAR */}
           <div className="mb-3">

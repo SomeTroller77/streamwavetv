@@ -14,7 +14,7 @@ const bebas = Bebas_Neue({
 })
 export const metadata = {
   title: "StreamWaveTV",
-  description: "Made by Saksham Vitwekar || A website with alot of TV channels with 99.9% uptime || IPTV",
+  description: "Made by Saksham Vitwekar || Watch TV channels from anywhere around the globe for free LIVE || IPTV",
   themeColor: "#000000",
 };
 

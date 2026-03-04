@@ -2,7 +2,7 @@
 
 import { Bebas_Neue } from "next/font/google";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useRef, useEffect, useMemo } from "react";
 
 const bebas = Bebas_Neue({
@@ -28,10 +28,12 @@ export default function Navbar({ countries, current }) {
   const dropdownRef = useRef(null);
   const desktopActiveRef = useRef(null);
   const mobileActiveRef = useRef(null);
-
+  const pathname = usePathname();
   /* Redirect default region */
   useEffect(() => {
-    if (!searchParams.get("region")) {
+    const route = pathname.split("/")[1];
+    console.log(route);
+    if (!searchParams.get("region") && route !== "channel" && route !== "play") {
       router.replace(`/?region=${current}`);
     }
   }, []);
