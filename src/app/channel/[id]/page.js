@@ -43,6 +43,11 @@ export default async function ChannelPage({ params }) {
                         ▶ Play
                     </button>
                 </Link>
+                {/*Disclaimer*/}
+                <br/><br/>
+                <p className="text-gray-400 mb-6">
+                    Some of the channels may not work due to encryption and DRM protection, Any inconvienence is regretted
+                </p>
             </div>
         </>
     );

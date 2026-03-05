@@ -2,7 +2,7 @@
 
 import Hls from "hls.js";
 import { useEffect, useRef, useState } from "react";
-
+import axios from "axios";
 
 export async function generateMetadata({params}){
     const channels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;
@@ -14,7 +14,7 @@ export async function generateMetadata({params}){
     }
 }
 
-export default function Stream({ url }) {
+export default function Stream({ url, region, channelID}) {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
   const volumeRef = useRef(null);
@@ -65,9 +65,20 @@ export default function Stream({ url }) {
 
     const onTimeUpdate = () => setCurrentTime(video.currentTime);
     const onLoadedMetadata = () => setDuration(video.duration);
-    const onPlaying = () => {
+    const onPlaying = async() => {
       setIsPlaying(true);
       setIsBuffering(false);
+      const params = new URLSearchParams();
+      params.append('region', region);
+      params.append('id', channelID);
+      axios.post("/api/increaseCount", params).then((e) => {
+        const resp = e.data;
+        if(resp.success){
+          console.log('view increased successfully');
+        }else{
+          console.log("view not increased");
+        }
+      });
     };
     const onPause = () => setIsPlaying(false);
     const onWaiting = () => setIsBuffering(true);
