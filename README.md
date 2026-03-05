@@ -120,7 +120,7 @@ streamwavetv/
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/streamwavetv.git
+git clone https://github.com/SomeTroller77/streamwavetv.git
 cd streamwavetv
 ```
 
