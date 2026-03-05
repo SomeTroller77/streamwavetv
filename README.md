@@ -71,29 +71,46 @@ The platform provides a fast, Netflix-style interface to explore channels by reg
 ## 🗂 Project Structure
 
 ```
-src/
-├── app/
-│   ├── api/
-│   │   └── viewCount/
-│   │       └── route.js
-│   ├── channel/
-│   ├── play/
-│   ├── search/
-│   ├── layout.js
-│   └── page.js
-│
-├── components/
-│   ├── Navbar.js
-│   ├── Section.js
-│   └── Channel.js
-│
-├── utils/
-│   ├── Stream.js
-│   └── Loader.js
-│
-├── lib/
-│   ├── redis.js
-│   └── trending.js
+streamwavetv/
+├── .gitignore
+├── eslint.config.mjs
+├── jsconfig.json
+├── LICENSE
+├── next.config.mjs
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public/
+│   └── robots.txt
+├── README.md
+└── src/
+    └── app/
+        ├── api/
+        │   ├── increaseCount/
+        │   │   └── route.js
+        │   └── viewCount/
+        │       └── route.js
+        ├── channel/
+        │   └── [id]/
+        │       └── page.js
+        ├── favicon.ico
+        ├── globals.css
+        ├── layout.js
+        ├── loading.js
+        ├── Navbar.js
+        ├── page.js
+        ├── play/
+        │   └── [id]/
+        │       ├── page.js
+        │       └── Stream.js
+        ├── search/
+        │   └── page.js
+        ├── sitemap.js
+        └── utils/
+            ├── Channel.js
+            ├── Loader.js
+            └── Section.js
+
 ```
 
 ---
