@@ -6,8 +6,8 @@ export async function POST(req){
     const form = await req.formData();
     const region = form.get("region");
     if(region){
-        const globalChannels = await client.zrange("trending:global", 0, 4, {rev:true});
-        const rgChannels = await client.zrange(`trending:${region}`, 0, 4, {rev:true}) || null;
+        const globalChannels = await client.zrange("trending:global", 0, 9, {rev:true});
+        const rgChannels = await client.zrange(`trending:${region}`, 0, 9, {rev:true}) || null;
         console.log(globalChannels);
         if(globalChannels && rgChannels){
             return Response.json({success:true, data:{global:globalChannels, region:rgChannels}});
