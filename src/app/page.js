@@ -20,7 +20,7 @@ export default async function Home({searchParams}) {
   const rawChannels = await (await axios.get('https://iptv-org.github.io/api/channels.json')).data;
   const params = new URLSearchParams();
   params.append('region', country);
-  const trending = await (await axios.post(`https://streamwavetv.online/api/viewCount`, params)).data;
+  const trending = await (await axios.post(`https://www.streamwavetv.online/api/viewCount`, params)).data;
   console.log(trending);
   const globalChannels = [];
   const regionChannels = [];
