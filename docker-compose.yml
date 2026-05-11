@@ -1,11 +1,17 @@
 services:
-  app:
+  streamwavetv:
     build: .
-    container_name: my-nextjs-app
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
     environment:
-      NODE_ENV: production
-      NEXT_TELEMETRY_DISABLED: "1"
-      REDIS_URL: redis://streamwavetv-redis:6379
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - redis
+
+  streamwavetv-redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
