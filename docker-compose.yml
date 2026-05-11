@@ -1,13 +1,17 @@
 services:
   streamwavetv:
     build: .
+    restart: unless-stopped
     environment:
       REDIS_URL: redis://streamwavetv-redis:6379
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
     depends_on:
-      - redis
+      - streamwavetv-redis
 
   streamwavetv-redis:
-    image: redis:7-alpine
+    image: redis:trixie
+    container_name: streamwavetv-redis
     restart: unless-stopped
     command: redis-server --appendonly yes
     volumes:
