@@ -1,6 +1,4 @@
-import { Redis } from '@upstash/redis'
-
-const client = Redis.fromEnv();
+import client from "@/app/lib/redis"
 
 export async function POST(req){
     const form = await req.formData();

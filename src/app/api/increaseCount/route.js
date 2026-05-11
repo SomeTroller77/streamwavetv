@@ -1,7 +1,6 @@
-import { Redis } from '@upstash/redis'
+import client from "@/app/lib/redis"
 import { headers } from 'next/headers';
 import crypto from 'crypto';
-const client = Redis.fromEnv();
 
 export async function POST(req){
     const headersList = headers();

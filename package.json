@@ -9,14 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@upstash/redis": "^1.36.3",
     "@vercel/analytics": "^1.6.1",
     "animate.css": "^4.1.1",
     "axios": "^1.13.5",
     "hls.js": "^1.6.15",
     "next": "16.1.6",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "redis": "^5.12.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
