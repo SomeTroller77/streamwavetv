@@ -1,8 +1,9 @@
-import client from "@/app/lib/redis"
+import { getRedis } from '@/app/lib/redis';
 import { headers } from 'next/headers';
 import crypto from 'crypto';
 
 export async function POST(req){
+    const client = getRedis();
     const headersList = headers();
     const ip = (await headersList).get("x-forwarded-for") || null;
     if(!ip){

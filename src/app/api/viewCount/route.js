@@ -1,6 +1,7 @@
-import client from "@/app/lib/redis"
+import { getRedis } from "@/app/lib/redis";
 
 export async function POST(req){
+    const client = getRedis();
     const form = await req.formData();
     const region = form.get("region");
     if(region){
