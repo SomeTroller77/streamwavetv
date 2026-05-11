@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    container_name: my-nextjs-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      REDIS_URL: redis://streamwavetv-redis:6379
